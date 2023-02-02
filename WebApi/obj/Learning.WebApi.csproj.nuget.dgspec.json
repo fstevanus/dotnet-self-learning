@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\stevanus\\project\\self-learning\\WebApi\\Api\\Api.csproj": {}
+    "C:\\Users\\stevanus\\project\\self-learning\\Learning\\WebApi\\Learning.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\stevanus\\project\\self-learning\\WebApi\\Api\\Api.csproj": {
+    "C:\\Users\\stevanus\\project\\self-learning\\Learning\\WebApi\\Learning.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\stevanus\\project\\self-learning\\WebApi\\Api\\Api.csproj",
-        "projectName": "Api",
-        "projectPath": "C:\\Users\\stevanus\\project\\self-learning\\WebApi\\Api\\Api.csproj",
+        "projectUniqueName": "C:\\Users\\stevanus\\project\\self-learning\\Learning\\WebApi\\Learning.WebApi.csproj",
+        "projectName": "Learning.WebApi",
+        "projectPath": "C:\\Users\\stevanus\\project\\self-learning\\Learning\\WebApi\\Learning.WebApi.csproj",
         "packagesPath": "C:\\Users\\stevanus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\stevanus\\project\\self-learning\\WebApi\\Api\\obj\\",
+        "outputPath": "C:\\Users\\stevanus\\project\\self-learning\\Learning\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\stevanus\\AppData\\Roaming\\NuGet\\NuGet.Config"
