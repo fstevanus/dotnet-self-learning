@@ -1,5 +1,7 @@
+using AutoMapper;
 using Learning.Entities.Dtos;
 using Learning.Entities.Models;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
@@ -10,14 +12,14 @@ public abstract class CrudController<TEntity, TRequestDto, TResponseDto> : Contr
   where TRequestDto : IRequestDto
   where TResponseDto : IResponseDto
 {
-  protected CrudController(IRepositoryManager repository, ILogger logger)
+  protected CrudController(IRepositoryManager repository, IMapper mapper)
   {
     Repository = repository;
-    Logger = logger;
+    Mapper = mapper;
   }
 
   protected IRepositoryManager Repository { get; }
-  protected ILogger Logger { get; }
+  protected IMapper Mapper { get; }
 
   protected async Task<IActionResult> ListAsync()
   {
@@ -26,9 +28,21 @@ public abstract class CrudController<TEntity, TRequestDto, TResponseDto> : Contr
     return Ok(entities);
   }
 
-  protected async Task<IActionResult> CreateAsync(TRequestDto creatDto)
+  protected async Task<IActionResult> CreateAsync(TRequestDto createDto)
   {
-    
+    var entity = Mapper.Map<TEntity>(createDto);
+    Repository.Set<TEntity>().Create(entity);
+    await Repository.SaveAsync();
+
+    var dto = Mapper.Map<TResponseDto>(entity);
+
+    var actionName = $"Get{typeof(TEntity).Name}";
+    if (GetType().GetMethod(actionName) != null)
+    {
+      return CreatedAtAction(actionName, new { id = dto.Id }, dto);
+    }
+
+    return Created($"{Request.GetDisplayUrl()}/{dto.Id}", dto);
   }
 
   protected virtual async Task<List<TEntity>> GetEntitiesAsync() =>

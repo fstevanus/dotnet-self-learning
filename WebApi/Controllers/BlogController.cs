@@ -1,3 +1,4 @@
+using AutoMapper;
 using Learning.Entities.Dtos;
 using Learning.Entities.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,13 @@ namespace Learning.WebApi.Controllers;
 [ApiController]
 public class BlogController : CrudController<Blog,BlogRequestDto,BlogResponseDto>
 {
-  public BlogController(IRepositoryManager repository, ILogger logger) : base(repository, logger)
+  public BlogController(IRepositoryManager repository, IMapper mapper) : base(repository, mapper)
   {
   }
 
   [HttpGet]
   public async Task<IActionResult> ListBlog() => await ListAsync();
+
+  [HttpPost]
+  public async Task<IActionResult> CreateBlog([FromBody] BlogRequestDto dto) => await CreateAsync(dto);
 }
